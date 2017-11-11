@@ -1,0 +1,30 @@
+<script>
+    // Download the data
+    
+    $.get("http://test.hiett.digital/api/getloggerinfo.php?logger=" + selectedlogger, function(data) {
+        // The data from the page is in data
+        var dataparts = data.split("&");
+        var loggers = dataparts[1].split(",");
+        
+        $(".loggercount").text(dataparts[0].split(",")[0]);
+        $(".datasetcount").text(loggers.length + " DATASETS");
+        
+        // Loop through the array and add the template elements
+        for(var i=0, len=loggers.length; i<len; i++) {
+            var item = loggers[i];
+            $(".scannerlistcontainer").append("<div class=\"scannerlistitem\" onclick=\"selecteddataset='" + item + "';silentloadpage('viewchart');\"><p style=\"float: left;\">" + item + "</p><p style=\"float: right; color: #3498db;\">></p></div>");
+        }
+    });
+    
+</script>
+
+<div class="page-blob">
+    <h1 class="loggercount">LOADING...</h1>
+    <p class="datasetcount">LOADING</p>
+</div>
+<div style="width:100%; float: left; height: 15px;"></div>
+<div class="scannerlistcontainer">
+    <div class="scannerlistcontainertitle">
+        <p>DATASETS (Scroll)</p>
+    </div>
+</div>

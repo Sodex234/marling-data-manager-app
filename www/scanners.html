@@ -1,0 +1,31 @@
+<script>
+    // Download the data
+    
+    $.get("http://test.hiett.digital/api/getallloggers.php", function(data) {
+        // The data from the page is in data
+        var loggers = data.split(",");
+        
+        $(".loggercount").text(loggers.length);
+        
+        // Loop through the array and add the template elements
+        for(var i=0, len=loggers.length; i<len; i++) {
+            var item = loggers[i];
+            $(".scannerlistcontainer").append("<div class=\"scannerlistitem\" onclick=\"selectedlogger='" + item + "';silentloadpage('scannerinfo');\"><p style=\"float: left;\">" + item + "</p><p style=\"float: right; color: #3498db;\">></p></div>");
+        }
+    });
+    
+</script>
+
+<div class="page-blob">
+    <h1 class="loggercount">LOADING...</h1>
+    <p>LOGGERS</p>
+</div>
+<div style="width:100%; float: left; height: 15px;"></div>
+<center>
+    <button class="btn">How to add a Scanner +</button>
+</center>
+<div class="scannerlistcontainer">
+    <div class="scannerlistcontainertitle">
+        <p>SCANNERS (Scroll)</p>
+    </div>
+</div>

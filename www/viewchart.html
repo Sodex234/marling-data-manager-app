@@ -1,0 +1,8 @@
+<script>
+    // Download the graph
+    $.get("http://test.hiett.digital/api/getgraphcode.php?scannerfile=" + selectedlogger + "&dataset=" + selecteddataset, function(data) {
+        // The data from the page is in data
+        $(".page-container").html(data);   
+    });
+</script>
+<center class="loadinggraph"><h1>Loading Graph...</h1></center>
